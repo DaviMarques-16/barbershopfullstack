@@ -19,12 +19,12 @@ const Home = () => {
 
       <div className="p-5">
         <h2 className="text-xl font-bold">Olá, Davi!</h2>
-        <p>Terça-feira, 02 de setembro.</p>
+        <p>Quarta-feira, 03 de setembro.</p>
 
 {/*BUSCA*/}
         <div className="mt-3 flex items-center gap-2">
           <Input placeholder="Faça sua busca..." />
-          <Button className="bg-indigo-500">
+          <Button className="bg-indigo-500 rounded-xl">
             <SearchIcon />
           </Button>
         </div>
@@ -40,18 +40,25 @@ const Home = () => {
 {/*AGENDAMENTO*/}
 
         <Card className="mt-6">
-            <CardContent className="flex">
+            <CardContent className="flex justify-between p-0">
                 {/* DIV LEFT */}
                 <div className="flex flex-col gap-2 py-5 pl-5">
-                    <Badge>Confirmado</Badge>
-                    <h3>Corte de Cabelo</h3>
+                    <Badge className="bg-indigo-500 w-fit">Confirmado</Badge>
+                    <h3 className="font-bold">Corte de Cabelo</h3>
 
                      <div className="flex items-center gap-2">
                         <Avatar className="h-6 w-6 rounded-xl">
                             <AvatarImage 
                                 src="https://utfs.io/f/c97a2dc9-cf62-468b-a851-bfd2bdde775f-16p.png" />
                             </Avatar>
+                            <p className="text-sm">Barbearia FSW</p>
                       </div>
+                </div>
+                {/* DIV RIGHT */}
+                <div className="flex flex-col items-center justify-center px-5 border-l-2 solid">
+                  <p className="text-sm">Setembro</p>
+                  <p className="text-2xl">03</p>
+                  <p className="text-sm">20:00</p>
                 </div>
             </CardContent>
         </Card>

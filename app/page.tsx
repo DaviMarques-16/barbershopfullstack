@@ -1,4 +1,4 @@
-// SERVER COMPONENTS = sem interatividade
+// SERVER COMPONENTS = sem interatividade (pode ser async)
 // A HOME PAGE
 
 {/*BUSCA*/}
@@ -10,8 +10,16 @@ import { Badge } from "./_components/ui/badge"
 import { SearchIcon } from "lucide-react"
 import { Card, CardContent } from "./_components/ui/card"
 import { Avatar, AvatarImage } from "./_components/ui/avatar"
+import { db } from "./_lib/prisma"
+import BarbershopItem from "./_components/barbershop-item"
 
-const Home = () => {
+const Home = async () => {
+  //Next e a facilidade com bdd
+  //Chamar meu banco de dados
+  const barbershops = await db.barbershop.findMany({}) 
+  console.log({ barbershops })
+
+
   return (
     <div>
       {/* HEADER */}
@@ -38,8 +46,8 @@ const Home = () => {
           />
         </div>
 {/*AGENDAMENTO*/}
-
-        <Card className="mt-6">
+        <h2 className="uppercase font-bold text-gray-400 text-xs mt-6 mb-3">Agendamentos</h2>
+        <Card>
             <CardContent className="flex justify-between p-0">
                 {/* DIV LEFT */}
                 <div className="flex flex-col gap-2 py-5 pl-5">
@@ -62,6 +70,15 @@ const Home = () => {
                 </div>
             </CardContent>
         </Card>
+
+         <h2 className="uppercase font-bold text-gray-400 text-xs mt-6 mb-3">Recomendados</h2>
+
+         {/* Passando prop para BarbershopItem */}
+         <div className="flex gap-4 overflow-auto scrollbar-hide">
+           {barbershops.map(barbershop => (
+           <BarbershopItem key={barbershop.id} barbershop={barbershop}/>
+           ))}
+         </div>
 
       </div>
     </div>

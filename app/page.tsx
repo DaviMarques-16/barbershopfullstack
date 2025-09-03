@@ -6,9 +6,10 @@ import Header from "./_components/header"
 import Image from "next/image"
 import { Input } from "./_components/ui/input"
 import { Button } from "./_components/ui/button"
-import { Badge, SearchIcon } from "lucide-react"
+import { Badge } from "./_components/ui/badge"
+import { SearchIcon } from "lucide-react"
 import { Card, CardContent } from "./_components/ui/card"
-import { Avatar, AvatarImage } from "@radix-ui/react-avatar"
+import { Avatar, AvatarImage } from "./_components/ui/avatar"
 
 const Home = () => {
   return (
@@ -46,11 +47,11 @@ const Home = () => {
                     <h3>Corte de Cabelo</h3>
 
                      <div className="flex items-center gap-2">
-                        <Avatar className="h-6 w-6">
+                        <Avatar className="h-6 w-6 rounded-xl">
                             <AvatarImage 
                                 src="https://utfs.io/f/c97a2dc9-cf62-468b-a851-bfd2bdde775f-16p.png" />
                             </Avatar>
-            </div>
+                      </div>
                 </div>
             </CardContent>
         </Card>

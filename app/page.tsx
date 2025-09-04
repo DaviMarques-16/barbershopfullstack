@@ -7,11 +7,37 @@ import Image from "next/image"
 import { Input } from "./_components/ui/input"
 import { Button } from "./_components/ui/button"
 import { Badge } from "./_components/ui/badge"
-import { EyeIcon, FootprintsIcon, SearchIcon } from "lucide-react"
+import { SearchIcon } from "lucide-react"
 import { Card, CardContent } from "./_components/ui/card"
 import { Avatar, AvatarImage } from "./_components/ui/avatar"
 import { db } from "./_lib/prisma"
 import BarbershopItem from "./_components/barbershop-item"
+
+interface QuickSearchOptions {
+  imageUrl: string;
+  title: string
+}
+
+const quickSearchOptions: QuickSearchOptions[] = [{
+  imageUrl: "./cabelo.svg",
+  title: "Cabelo"
+}, {
+  imageUrl: "./barba.svg",
+  title: "Barba"
+}, {
+  imageUrl: "./acabamento.svg",
+  title: "Acabamento"
+}, {
+  imageUrl: "./massagem.svg",
+  title: "Massagem"
+}, {
+  imageUrl: "./sobrancelha.svg",
+  title: "Sobrancelha"
+}, {
+  imageUrl: "./hidratacao.svg",
+  title: "Hidratação"
+}
+]
 
 const Home = async () => {
   //Next e a facilidade com bdd
@@ -45,27 +71,31 @@ const Home = async () => {
 
 {/*BUSCA RÁPIDA*/}
       <div className="flex gap-3 mt-6 overflow-x-scroll scrollbar-hide">
-          <Button className="gap-2" variant="secondary">
+        {quickSearchOptions.map((option) => (
+          <Button className="gap-2" variant="secondary" key={option.title}>
             <Image 
-            src="./cabelo.svg" 
-            width={16} 
-            height={16} 
-            alt="Cabelo"/>
-            Cabelo
+              src={option.imageUrl} 
+              width={16} 
+              height={16} 
+              alt={option.title}
+          />
+            {option.title}
           </Button>
+        ))}
+        </div>
         
 
-        <div className="flex gap-3">
-          <Button className="gap-2" variant="secondary">
+       
+{/*
+         <Button className="gap-2" variant="secondary">
             <Image src="./barba.svg" 
             width={16} 
             height={16} 
             alt="Barba"/>
             Barba
           </Button>
-        </div>
         
-        <div className="flex gap-3">
+       
           <Button className="gap-2" variant="secondary">
             <Image 
             src="./acabamento.svg" 
@@ -74,23 +104,39 @@ const Home = async () => {
             alt="Acabamento"/>
             Acabamento
           </Button>
-        </div>
-
-        <div className="flex gap-3">
+     
           <Button className="gap-2" variant="secondary">
-            <FootprintsIcon size={16} />
-            Pézinho
+            <Image 
+            src="./massagem.svg" 
+            width={16} 
+            height={16} 
+            alt="Massagem"/>
+            Massagem
           </Button>
-        </div>
+        
 
-        <div className="flex gap-3">
+       
           <Button className="gap-2" variant="secondary">
-            <EyeIcon size={16} />
+            <Image 
+            src="./sobrancelha.svg" 
+            width={16} 
+            height={16} 
+            alt="Sobrancelha"/>
             Sobrancelha
           </Button>
-        </div>
-        
-      </div>
+
+           <Button className="gap-2" variant="secondary">
+            <Image 
+            src="./hidratacao.svg" 
+            width={16} 
+            height={16} 
+            alt="Hidratação"/>
+            Hidratação
+          </Button>
+*/}
+      
+
+    
         
 
 {/*IMAGEM*/}
@@ -162,6 +208,7 @@ const Home = async () => {
       </footer>
 
     </div>
+
   )
 }
 

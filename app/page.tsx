@@ -7,7 +7,7 @@ import Image from "next/image"
 import { Input } from "./_components/ui/input"
 import { Button } from "./_components/ui/button"
 import { Badge } from "./_components/ui/badge"
-import { SearchIcon } from "lucide-react"
+import { EyeIcon, FootprintsIcon, SearchIcon } from "lucide-react"
 import { Card, CardContent } from "./_components/ui/card"
 import { Avatar, AvatarImage } from "./_components/ui/avatar"
 import { db } from "./_lib/prisma"
@@ -18,6 +18,12 @@ const Home = async () => {
   //Chamar meu banco de dados
   const barbershops = await db.barbershop.findMany({}) 
   console.log({ barbershops })
+
+  const popularBarbershops = await db.barbershop.findMany({
+    orderBy: {
+      name: 'desc'
+    }
+  })
 
 
   return (
@@ -36,6 +42,57 @@ const Home = async () => {
             <SearchIcon />
           </Button>
         </div>
+
+{/*BUSCA RÁPIDA*/}
+      <div className="flex gap-3 mt-6 overflow-x-scroll scrollbar-hide">
+          <Button className="gap-2" variant="secondary">
+            <Image 
+            src="./cabelo.svg" 
+            width={16} 
+            height={16} 
+            alt="Cabelo"/>
+            Cabelo
+          </Button>
+        
+
+        <div className="flex gap-3">
+          <Button className="gap-2" variant="secondary">
+            <Image src="./barba.svg" 
+            width={16} 
+            height={16} 
+            alt="Barba"/>
+            Barba
+          </Button>
+        </div>
+        
+        <div className="flex gap-3">
+          <Button className="gap-2" variant="secondary">
+            <Image 
+            src="./acabamento.svg" 
+            width={16} 
+            height={16} 
+            alt="Acabamento"/>
+            Acabamento
+          </Button>
+        </div>
+
+        <div className="flex gap-3">
+          <Button className="gap-2" variant="secondary">
+            <FootprintsIcon size={16} />
+            Pézinho
+          </Button>
+        </div>
+
+        <div className="flex gap-3">
+          <Button className="gap-2" variant="secondary">
+            <EyeIcon size={16} />
+            Sobrancelha
+          </Button>
+        </div>
+        
+      </div>
+        
+
 {/*IMAGEM*/}
         <div className="relative mt-6 h-[150px] w-full">
           <Image
@@ -80,7 +137,30 @@ const Home = async () => {
            ))}
          </div>
 
+
+         <h2 className="uppercase font-bold text-gray-400 text-xs mt-6 mb-3">
+          Populares
+         </h2>
+
+         {/* Passando prop para BarbershopItem */}
+         <div className="flex gap-4 overflow-auto scrollbar-hide">
+           {popularBarbershops.map(barbershop => (
+           <BarbershopItem key={barbershop.id} barbershop={barbershop}/>
+           ))}
+         </div>
+
       </div>
+
+      <footer>
+        <Card>
+          <CardContent className="px-5 py-6">
+            <p className="text-sm text-gray-400">© 2025 Copyright
+              <span className="font-bold"> FSW Barber</span>
+            </p>
+          </CardContent>
+        </Card>
+      </footer>
+
     </div>
   )
 }

@@ -6,38 +6,12 @@ import Header from "./_components/header"
 import Image from "next/image"
 import { Input } from "./_components/ui/input"
 import { Button } from "./_components/ui/button"
-import { Badge } from "./_components/ui/badge"
 import { SearchIcon } from "lucide-react"
 import { Card, CardContent } from "./_components/ui/card"
-import { Avatar, AvatarImage } from "./_components/ui/avatar"
 import { db } from "./_lib/prisma"
 import BarbershopItem from "./_components/barbershop-item"
-
-interface QuickSearchOptions {
-  imageUrl: string;
-  title: string
-}
-
-const quickSearchOptions: QuickSearchOptions[] = [{
-  imageUrl: "./cabelo.svg",
-  title: "Cabelo"
-}, {
-  imageUrl: "./barba.svg",
-  title: "Barba"
-}, {
-  imageUrl: "./acabamento.svg",
-  title: "Acabamento"
-}, {
-  imageUrl: "./massagem.svg",
-  title: "Massagem"
-}, {
-  imageUrl: "./sobrancelha.svg",
-  title: "Sobrancelha"
-}, {
-  imageUrl: "./hidratacao.svg",
-  title: "Hidratação"
-}
-]
+import { quickSearchOptions } from "./_constants/search"
+import BookingItem from "./_components/booking-item"
 
 const Home = async () => {
   //Next e a facilidade com bdd
@@ -50,7 +24,6 @@ const Home = async () => {
       name: 'desc'
     }
   })
-
 
   return (
     <div>
@@ -149,30 +122,7 @@ const Home = async () => {
           />
         </div>
 {/*AGENDAMENTO*/}
-        <h2 className="uppercase font-bold text-gray-400 text-xs mt-6 mb-3">Agendamentos</h2>
-        <Card>
-            <CardContent className="flex justify-between p-0">
-                {/* DIV LEFT */}
-                <div className="flex flex-col gap-2 py-5 pl-5">
-                    <Badge className="bg-indigo-500 w-fit">Confirmado</Badge>
-                    <h3 className="font-bold">Corte de Cabelo</h3>
-
-                     <div className="flex items-center gap-2">
-                        <Avatar className="h-6 w-6 rounded-xl">
-                            <AvatarImage 
-                                src="https://utfs.io/f/c97a2dc9-cf62-468b-a851-bfd2bdde775f-16p.png" />
-                            </Avatar>
-                            <p className="text-sm">Barbearia FSW</p>
-                      </div>
-                </div>
-                {/* DIV RIGHT */}
-                <div className="flex flex-col items-center justify-center px-5 border-l-2 solid">
-                  <p className="text-sm">Setembro</p>
-                  <p className="text-2xl">03</p>
-                  <p className="text-sm">20:00</p>
-                </div>
-            </CardContent>
-        </Card>
+        <BookingItem />
 
          <h2 className="uppercase font-bold text-gray-400 text-xs mt-6 mb-3">Recomendados</h2>
 

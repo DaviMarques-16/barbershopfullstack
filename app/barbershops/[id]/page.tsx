@@ -18,8 +18,13 @@ const BarbershopPage = async ({params}: BarbershopPageProps) => {
     const barbershop = await db.barbershop.findUnique({
         where: {
             id: params.id
+        },
+        include: {
+            services: true
         }
     })
+
+    console.log(barbershop.services)
 
     //retorna 404 para id inválidos
     if (!barbershop) {

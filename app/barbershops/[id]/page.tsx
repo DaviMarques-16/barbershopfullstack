@@ -1,6 +1,6 @@
 import { Button } from "@/app/_components/ui/button";
 import { db } from "@/app/_lib/prisma";
-import { ChevronLeftIcon, MapPinIcon, MenuIcon, StarIcon } from "lucide-react";
+import { ChevronLeftIcon, MapPinIcon, MenuIcon, SmartphoneIcon, StarIcon } from "lucide-react";
 import Image from "next/image"
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -88,7 +88,8 @@ const BarbershopPage = async ({params}: BarbershopPageProps) => {
                 <p className="text-sm text-justify">{barbershop?.description}</p>
             </div>
 
-            <div className="p-5 space-y-3">
+            {/* Serviços  */}
+            <div className="p-5 space-y-3 border-b border-solid">
                 <h2 className="font-bold text-xs uppercase text-gray-400">Serviços</h2>
                 <div className="space-y-3">
                     {/* Renderizar todos os serviços */}
@@ -97,6 +98,14 @@ const BarbershopPage = async ({params}: BarbershopPageProps) => {
                         ))}
                 </div>
             </div>
+
+            {/* Contato */}
+            <div className="p-5 space-y-2">
+                {barbershop.phones.map(phone => (
+                   
+                ))}
+            </div>
+
        </div>
      );
 }

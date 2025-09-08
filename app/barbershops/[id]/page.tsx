@@ -4,7 +4,10 @@ import { ChevronLeftIcon, MapPinIcon, MenuIcon, StarIcon } from "lucide-react";
 import Image from "next/image"
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import ServiceItem from "@/app/_components/service-item";
 
+
+//TELA DETALHES DA BARBEARIA
 
 interface BarbershopPageProps {
     params: {
@@ -24,7 +27,7 @@ const BarbershopPage = async ({params}: BarbershopPageProps) => {
         }
     })
 
-    console.log(barbershop.services)
+    console.log(barbershop?.services)
 
     //retorna 404 para id inválidos
     if (!barbershop) {
@@ -83,6 +86,16 @@ const BarbershopPage = async ({params}: BarbershopPageProps) => {
             <div className="p-5 border-b border solid space-y-2">
                 <h2 className="font-bold uppercaseb text-gray-400">Sobre nós</h2>
                 <p className="text-sm text-justify">{barbershop?.description}</p>
+            </div>
+
+            <div className="p-5 space-y-3">
+                <h2 className="font-bold text-xs uppercase text-gray-400">Serviços</h2>
+                <div className="space-y-3">
+                    {/* Renderizar todos os serviços */}
+                    {barbershop.services.map(service => (
+                        <ServiceItem service={service} key="service.id"/>
+                        ))}
+                </div>
             </div>
        </div>
      );

@@ -6,6 +6,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import ServiceItem from "@/app/_components/service-item";
 import PhoneItem from "@/app/_components/phone-item";
+import SidebarButton from "@/app/_components/sidebar-sheet";
 
 
 //TELA DETALHES DA BARBEARIA
@@ -57,14 +58,7 @@ const BarbershopPage = async ({params}: BarbershopPageProps) => {
                     </Link>
                 </Button>
 
-                <Button 
-                    size="icon" 
-                    variant="secondary" 
-                    className="absolute top-4 right-4"
-                >
-                
-                <MenuIcon />
-                </Button>
+                <SidebarButton />
             </div>
 
             <div className="p-5 border-b border-solid ">

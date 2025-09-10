@@ -1,12 +1,9 @@
 import Image from "next/image"
 import { Card, CardContent } from "./ui/card"
 import { Button } from "./ui/button"
-import { CalendarIcon, HomeIcon, LogOutIcon, MenuIcon } from "lucide-react"
-import { Sheet, SheetClose, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "./ui/sheet"
-import { quickSearchOptions } from "../_constants/search"
-import { Avatar, AvatarImage } from "./ui/avatar"
-import Link from "next/link"
+import { Sheet, SheetTrigger } from "./ui/sheet"
 import SidebarSheet from "./sidebar-sheet"
+import { MenuIcon } from "lucide-react"
 
 const Header = () => {
   return (
@@ -14,15 +11,17 @@ const Header = () => {
       <CardContent className="flex flex-row items-center justify-between p-5">
         <Image alt="FSW Barber" src="/logo.png" height={18} width={120} />
         
-        <Sheet>
-          <SheetTrigger asChild>
-            <Button size="icon" variant="outline">
-              <MenuIcon />
-            </Button>
-          </SheetTrigger>
-
+          <Sheet>
+              <SheetTrigger asChild>
+                  <Button 
+                      size="icon"
+                      variant="outline"
+                      className="absolute top-4 right-4">
+                  <MenuIcon />
+                  </Button>
+              </SheetTrigger>
           <SidebarSheet />
-        </Sheet>
+          </Sheet>
       </CardContent>
     </Card>
   )

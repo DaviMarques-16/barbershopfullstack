@@ -3,8 +3,8 @@ import { Button } from "./ui/button";
 import { SheetClose, SheetContent, SheetHeader, SheetTitle } from "./ui/sheet";
 import { Avatar, AvatarImage } from "./ui/avatar";
 import Link from "next/link";
-import { quickSearchOptions } from "../_constants/search";
 import Image from "next/image"
+import { quickSearchOptions } from "../_constants/search";
 
 const SidebarSheet = () => {
     return ( 
@@ -44,19 +44,19 @@ const SidebarSheet = () => {
             </div>
 
             <div className="py-5 flex flex-col gap-2 border-b border-solid">
-              {quickSearchOptions.map((option) => (
+              {quickSearchOptions.map((options) => (
                 <Button 
-                key={option.title}
                 className="justify-start gap-2"
                 variant="ghost"
-                >
+                key={options.title}>
                   <Image
-                  alt={option.title}
-                  src={option.imageUrl}
+                  alt=""
+                  src={options.imageUrl}
                   height={18}
-                  width={18} />
-                  {option.title}
-              </Button>
+                  width={18} 
+                  />
+                  <p>{options.title}</p>
+                </Button>
               ))}
             </div>
 

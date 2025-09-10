@@ -50,7 +50,7 @@ const Home = async () => {
               width={16} 
               height={16} 
               alt={option.title}
-          />
+            />
             <p>{option.title}</p>
           </Button>
         ))}

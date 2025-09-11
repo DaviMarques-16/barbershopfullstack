@@ -1,3 +1,5 @@
+'use client'
+
 import { CalendarIcon, HomeIcon, LogInIcon, LogOutIcon } from "lucide-react";
 import { Button } from "./ui/button";
 import { SheetClose, SheetContent, SheetHeader, SheetTitle } from "./ui/sheet";
@@ -6,8 +8,15 @@ import Image from "next/image"
 import { quickSearchOptions } from "../_constants/search";
 import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from "./ui/dialog";
 import { DialogHeader } from "./ui/dialog";
+import { signIn, signOut, useSession } from "next-auth/react";
+import { Avatar, AvatarImage } from "./ui/avatar";
 
 const SidebarSheet = () => {
+  const {data} = useSession()
+  const handleLoginWithGoogleClick = () => signIn("google")
+  const handleLogoutClick = () => signOut()
+
+
     return ( 
 
           <SheetContent className="overflow-y-auto">
@@ -16,44 +25,54 @@ const SidebarSheet = () => {
             </SheetHeader>
 
             <div className="flex items-center border-b border-solid py-5 gap-3 justify-between">
-              <h2 className="text-lg font-bold">Olá, faça seu Login!</h2>
 
-                <Dialog>
-                  <DialogTrigger asChild>
-                    <Button size="icon" className="bg-indigo-500 rounded-xl">
-                    <LogInIcon />
-                    </Button>
-                  </DialogTrigger>
+              {data?.user ? (
+                <div className="flex items-center gap-2">   
+                  <Avatar className="border-2 border-indigo-800 solid">
+                    <AvatarImage src={data?.user?.image ?? ""} />
+                  </Avatar>
 
-                  <DialogContent className="w-[90%]">
-                    <DialogHeader>
-                      <DialogTitle>Faça seu login na plataforma</DialogTitle>
-                      <DialogDescription>
-                        Conecte-se 
-                      </DialogDescription>
-                    </DialogHeader>
+                  <div>
+                    <p className="font-bold">{data.user.name}</p>
+                    <p className="text-xs">{data.user.email}</p>
+                  </div>
+                </div>
+            ) : (
+                  <>
+                    <h2 className="text-lg font-bold">Olá, faça seu Login!</h2>
 
-                    <Button variant="outline" className="gap-1 font-bold">
-                      <Image 
-                      alt="Fazer login com o Google"
-                      src="/google.svg"
-                      width={18}
-                      height={18}
-                      />
-                      Google
-                    </Button>
-                  </DialogContent>
-                </Dialog>
-              {/* <Avatar className="border-2 border-indigo-800 solid">
-                <AvatarImage src="/tayloravatar.jpg" />
-              </Avatar>
+                    <Dialog>
+                      <DialogTrigger asChild>
+                        <Button size="icon" className="bg-indigo-500 rounded-xl">
+                        <LogInIcon />
+                        </Button>
+                      </DialogTrigger>
 
-              <div>
-                <p className="font-bold">Davi Marques</p>
-                <p className="text-xs">dazuzin@gmail.com</p>
-              </div> */}
+                      <DialogContent className="w-[90%]">
+                        <DialogHeader>
+                          <DialogTitle>Faça seu login na plataforma</DialogTitle>
+                          <DialogDescription>
+                            Conecte-se 
+                          </DialogDescription>
+                        </DialogHeader>
 
-            </div>
+                        <Button 
+                        variant="outline" 
+                        className="gap-1 font-bold"
+                        onClick={handleLoginWithGoogleClick}>
+                          <Image 
+                          alt="Fazer login com o Google"
+                          src="/google.svg"
+                          width={18}
+                          height={18}
+                          />
+                          Google
+                        </Button>
+                      </DialogContent>
+                    </Dialog>
+                </>
+                )}
+              </div>
 
 
             <div className="py-5 flex flex-col gap-2 border-b border-solid">
@@ -90,7 +109,8 @@ const SidebarSheet = () => {
             </div>
 
             <div className="py-5 flex flex-col gap-2">
-              <Button variant="ghost" className="justify-start gap-2">
+              <Button variant="ghost" className="justify-start gap-2"
+              onClick={handleLogoutClick}>
                 <LogOutIcon size={18}/>
                 Sair da conta
               </Button>

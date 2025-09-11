@@ -4,13 +4,12 @@
 {/*BUSCA*/}
 import Header from "./_components/header"
 import Image from "next/image"
-import { Input } from "./_components/ui/input"
 import { Button } from "./_components/ui/button"
-import { SearchIcon } from "lucide-react"
 import { db } from "./_lib/prisma"
 import BarbershopItem from "./_components/barbershop-item"
 import { quickSearchOptions } from "./_constants/search"
 import BookingItem from "./_components/booking-item"
+import Search from "./_components/search"
 
 const Home = async () => {
   //Next e a facilidade com bdd
@@ -34,12 +33,10 @@ const Home = async () => {
         <p>Quarta-feira, 03 de setembro.</p>
 
 {/*BUSCA*/}
-        <div className="mt-3 flex items-center gap-2">
-          <Input placeholder="Faça sua busca..." />
-          <Button className="bg-indigo-500 rounded-xl">
-            <SearchIcon />
-          </Button>
-        </div>
+
+      <div className="mt-4">
+        <Search />
+      </div>
 
 {/*BUSCA RÁPIDA*/}
       <div className="flex gap-3 mt-6 overflow-x-scroll scrollbar-hide">

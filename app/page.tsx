@@ -140,7 +140,8 @@ const Home = async () => {
          {/* Passando prop para BarbershopItem */}
          <div className="flex gap-4 overflow-auto scrollbar-hide">
            {popularBarbershops.map(barbershop => (
-           <BarbershopItem key={barbershop.id} barbershop={barbershop}/>
+           <BarbershopItem 
+           key={barbershop.id} barbershop={barbershop} />
            ))}
          </div>
 

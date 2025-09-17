@@ -6,14 +6,13 @@ import { SheetClose, SheetContent, SheetHeader, SheetTitle } from "./ui/sheet";
 import Link from "next/link";
 import Image from "next/image"
 import { quickSearchOptions } from "../_constants/search";
-import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from "./ui/dialog";
-import { DialogHeader } from "./ui/dialog";
-import { signIn, signOut, useSession } from "next-auth/react";
+import { Dialog, DialogContent, DialogTrigger } from "./ui/dialog";
+import { signOut, useSession } from "next-auth/react";
 import { Avatar, AvatarImage } from "./ui/avatar";
+import SignInDialog from "./sign-in-dialog";
 
 const SidebarSheet = () => {
   const {data} = useSession()
-  const handleLoginWithGoogleClick = () => signIn("google")
   const handleLogoutClick = () => signOut()
 
 
@@ -49,26 +48,9 @@ const SidebarSheet = () => {
                       </DialogTrigger>
 
                       <DialogContent className="w-[90%]">
-                        <DialogHeader>
-                          <DialogTitle>Faça seu login na plataforma</DialogTitle>
-                          <DialogDescription>
-                            Conecte-se 
-                          </DialogDescription>
-                        </DialogHeader>
-
-                        <Button 
-                        variant="outline" 
-                        className="gap-1 font-bold"
-                        onClick={handleLoginWithGoogleClick}>
-                          <Image 
-                          alt="Fazer login com o Google"
-                          src="/google.svg"
-                          width={18}
-                          height={18}
-                          />
-                          Google
-                        </Button>
+                         <SignInDialog />
                       </DialogContent>
+
                     </Dialog>
                 </>
                 )}

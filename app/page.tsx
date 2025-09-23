@@ -38,10 +38,14 @@ const Home = async () => {
       service: {
         include: {
           barbershop: true
-        }
-      }
-    }
-  }) : []
+        },
+      },
+    },
+    orderBy: {
+      date: 'asc',
+    },
+  }) 
+  : []
 
   return (
     <div>
